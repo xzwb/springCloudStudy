@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cc.yyf.cloud.mapper.PaymentMapper">
+    <insert id="create" parameterType="payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment values(default, #{serial});
+    </insert>
+
+    <select id="getPaymentById" resultType="payment">
+        select *from payment where id = #{id};
+    </select>
+</mapper>
