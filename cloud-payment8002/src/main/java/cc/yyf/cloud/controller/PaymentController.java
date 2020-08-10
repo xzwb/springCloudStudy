@@ -14,6 +14,7 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+
     @Value("${server.port}")
     private String serverPort;
 
@@ -27,7 +28,7 @@ public class PaymentController {
     @GetMapping("/payment/get/{id}")
     public Result select(@PathVariable("id") int id) {
         Result result = paymentService.getPaymentById(id);
-        log.info("******查询" + result + "  serverPost : " + serverPort);
+        log.info("******查询" + result + "  serverPort : " + serverPort);
         return result;
     }
 }
