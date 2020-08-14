@@ -17,6 +17,8 @@
       <module>cloud-payment8002</module>
       <module>cloud-zookeeper-payment8004</module>
       <module>cloud-zk-order9988</module>
+      <module>cloud-consul-payment8006</module>
+      <module>cloud-order9997</module>
   </modules>
 
 
