@@ -5,11 +5,6 @@ server:
 spring:
   application:
     name: cloud-order-service
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cloud?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: 520520cw...
 
 eureka:
   client:
