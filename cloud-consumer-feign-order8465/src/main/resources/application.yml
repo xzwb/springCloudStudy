@@ -1,0 +1,16 @@
+server:
+  port: 8465
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    cc.yyf.cloud.service.PaymentService: debug

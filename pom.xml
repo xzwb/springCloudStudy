@@ -19,6 +19,7 @@
       <module>cloud-zk-order9988</module>
       <module>cloud-consul-payment8006</module>
       <module>cloud-order9997</module>
+      <module>cloud-consumer-feign-order8465</module>
   </modules>
 
 
