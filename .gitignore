@@ -3,3 +3,4 @@
 /cloud-order80/target/
 /cloud-api-commons/cloud-api-commons.iml
 /cloud-consumer-feign-order8465/target/
+/cloud-provider-hystrix-payment8001/target/

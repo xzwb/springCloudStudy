@@ -1,0 +1,12 @@
+server:
+  port: 9999
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
