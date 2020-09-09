@@ -27,7 +27,13 @@ public class PaymentController {
 
     @GetMapping("/payment/timeout")
     public String paymentError() {
-        return paymentService.Error();
+        return paymentService.Error(1);
+    }
+
+    // 熔断
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitBreaker(@PathVariable("id") int id) {
+        return paymentService.paymentCircuitBreaker(id);
     }
 
 }

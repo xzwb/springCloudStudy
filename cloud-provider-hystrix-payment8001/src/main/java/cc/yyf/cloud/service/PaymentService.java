@@ -22,16 +22,35 @@ public class PaymentService {
     @HystrixCommand(fallbackMethod = "timeOutHandler", commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
     })
-    public String Error() {
+    public String Error(int id) {
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(4);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return "呜呜呜呜呜呜";
     }
 
-    public String timeOutHandler() {
-        return "hahahahahahaha";
+    public String timeOutHandler(int id) {
+        return "hahahahahahaha" + id;
+    }
+
+//     ======服务熔断
+    // 10秒钟内10次访问60以上的失败率跳闸
+    @HystrixCommand(fallbackMethod = "paymentCircuitBreakerFallBack", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"), // 是否开启断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), // 请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 时间窗口期
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60") // 失败率达到多少后跳闸
+    })
+    public String paymentCircuitBreaker(int id) {
+        if (id < 0) {
+            throw new RuntimeException("********id不能为负数");
+        }
+        return "paymentCircuitBreaker   成功";
+    }
+
+    public String paymentCircuitBreakerFallBack(int id) {
+        return "id不能为负数 wuwuwuwuwu";
     }
 }
