@@ -1,6 +1,7 @@
 package cc.yyf.cloud.controller;
 
 import cc.yyf.cloud.service.OrderService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@DefaultProperties(defaultFallback = "globalFallBack")
 public class OrderController {
 
     @Autowired
@@ -20,14 +22,20 @@ public class OrderController {
     }
 
     @GetMapping("/error/ss")
-    @HystrixCommand(fallbackMethod = "orderTimeOutFallBackMethod", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
-    })
+//    @HystrixCommand(fallbackMethod = "orderTimeOutFallBackMethod", commandProperties = {
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
+//    })
+    @HystrixCommand
     public String error() {
         return orderService.paymentError();
     }
 
     public String orderTimeOutFallBackMethod() {
         return "我是傻逼9999,我挂了";
+    }
+
+
+    public String globalFallBack() {
+        return "全局服务降级处理";
     }
 }
